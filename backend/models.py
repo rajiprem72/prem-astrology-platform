@@ -13,7 +13,10 @@ class Customer(Base):
     name = Column(String)
     gender = Column(String)
 
-    mobile = Column(String)
+    country = Column(String)
+    current_residence = Column(String)
+
+    whatsapp_number = Column(String)
     email = Column(String)
 
     date_of_birth = Column(String)
@@ -27,5 +30,3 @@ class Customer(Base):
     question3 = Column(String)
 
     delivery_method = Column(String)
-
-    order_status = Column(String)

@@ -16,10 +16,14 @@ version="1.0.0"
 )
 
 class CustomerOrder(BaseModel):
+
     name: str
     gender: str
 
-    mobile: str
+    country: str
+    current_residence: str
+
+    whatsapp_number: str
     email: str
 
     date_of_birth: str
@@ -51,7 +55,10 @@ def submit_order(order: CustomerOrder):
         name=order.name,
         gender=order.gender,
 
-        mobile=order.mobile,
+ 	country=order.country,
+	current_residence=order.current_residence,
+
+        whatsapp_number=order.whatsapp_number,
         email=order.email,
 
         date_of_birth=order.date_of_birth,
@@ -64,9 +71,9 @@ def submit_order(order: CustomerOrder):
         question2=order.question2,
         question3=order.question3,
 
-        delivery_method=order.delivery_method,
+        delivery_method=order.delivery_method
 
-        order_status="Pending"
+        
     )
 
     db.add(customer)
