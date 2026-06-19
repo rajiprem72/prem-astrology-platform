@@ -4,12 +4,12 @@ from sqlalchemy.orm import sessionmaker
 DATABASE_URL = "sqlite:///./prem_astrology.db"
 
 engine = create_engine(
-DATABASE_URL,
-connect_args={"check_same_thread": False}
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
 )
 
 SessionLocal = sessionmaker(
-autocommit=False,
-autoflush=False,
-bind=engine
+    autocommit=False,
+    autoflush=False,
+    bind=engine
 )
