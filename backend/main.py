@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 from backend.database import engine
 from backend.database import SessionLocal
 
@@ -14,6 +15,15 @@ app = FastAPI(
 title="Prem Astrology Platform",
 version="1.0.0"
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 class CustomerOrder(BaseModel):
 
@@ -50,7 +60,7 @@ def submit_order(order: CustomerOrder):
     db = SessionLocal()
 
     customer = Customer(
-        order_number="PA000001",
+        order_number="TEMP",
 
         name=order.name,
         gender=order.gender,
@@ -80,9 +90,34 @@ def submit_order(order: CustomerOrder):
     db.commit()
     db.refresh(customer)
 
+    customer.order_number = f"PA{customer.id:06d}"
+
+    db.commit()
+    db.refresh(customer)
+
     return {
         "status": "success",
         "customer_id": customer.id,
         "customer": customer.name,
         "message": "Order saved successfully"
     }
+
+@app.get("/customers")
+def get_customers():
+
+    db = SessionLocal()
+
+    customers = db.query(Customer).all()
+
+    return customers
+
+@app.get("/customer/{customer_id}")
+def get_customer(customer_id: int):
+
+    db = SessionLocal()
+
+    customer = db.query(Customer).filter(
+        Customer.id == customer_id
+    ).first()
+
+    return customer

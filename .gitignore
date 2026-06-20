@@ -8,3 +8,5 @@ venv/
 *.pdf
 *.txt
 .DS_Store
+
+prem_astrology.db
