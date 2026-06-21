@@ -48,6 +48,7 @@ class CustomerOrder(BaseModel):
 
     delivery_method: str
 
+
 @app.get("/")
 def home():
     return {
@@ -81,8 +82,15 @@ def submit_order(order: CustomerOrder):
         question2=order.question2,
         question3=order.question3,
 
-        delivery_method=order.delivery_method
+        delivery_method=order.delivery_method,
+        order_status = "Pending",
 
+        payment_status="Pending",
+        payment_id="",
+
+        amount="699",
+
+        report_status="Pending"
         
     )
 

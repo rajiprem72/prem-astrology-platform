@@ -30,3 +30,10 @@ class Customer(Base):
     question3 = Column(String)
 
     delivery_method = Column(String)
+    order_status = Column(String)
+    
+    payment_status = Column(String)
+    payment_id = Column(String)
+    amount = Column(String)
+
+    report_status = Column(String)
