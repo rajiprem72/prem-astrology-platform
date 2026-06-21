@@ -38,6 +38,27 @@ h1{
 
 <h1>Prem Astrology Platform</h1>
 
+<div style="background:#f5f5f5;padding:15px;border-radius:8px;margin-bottom:20px;">
+
+<h2>Detailed Horoscope Report</h2>
+
+<p><strong>Service Fee:</strong> ₹699</p>
+
+<p><strong>Delivery Time:</strong> Within 30 Minutes</p>
+
+<p><strong>Report Includes:</strong></p>
+
+<ul>
+<li>Detailed Horoscope Analysis</li>
+<li>Answers to 3 Personal Questions</li>
+<li>English Horoscope Report</li>
+<li>Preferred Language Report</li>
+<li>Email Delivery</li>
+<li>WhatsApp Delivery</li>
+</ul>
+
+</div>
+
 <form id="orderForm">
 
 <label>Full Name</label> <input type="text" id="name" required>
@@ -74,8 +95,9 @@ h1{
 
 <label>Delivery Method</label> <select id="delivery_method"> <option>WhatsApp</option> <option>Email</option> <option>Both</option> </select>
 
-<button type="submit">Submit Horoscope Request</button>
-
+<button type="submit">
+Pay ₹699 & Submit Order
+</button>
 </form>
 
 <script>
@@ -122,10 +144,14 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     const result = await response.json();
 
     alert(
-        "Order Submitted Successfully.\n\nOrder ID : "
-        + result.customer_id
+     "Order Created Successfully\n\n" +
+     "Order Number : " + result.order_number +
+     "\nCustomer : " + result.customer +
+     "\nAmount Payable : ₹699" +
+     "\nDelivery Time : Within 30 Minutes"
     );
 
+  
 });
 
 </script>

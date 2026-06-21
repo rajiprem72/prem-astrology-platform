@@ -107,8 +107,11 @@ def submit_order(order: CustomerOrder):
         "status": "success",
         "customer_id": customer.id,
         "customer": customer.name,
+        "order_number": customer.order_number,
+        "amount": customer.amount,
         "message": "Order saved successfully"
     }
+
 
 @app.get("/customers")
 def get_customers():
