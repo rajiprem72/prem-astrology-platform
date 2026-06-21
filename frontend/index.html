@@ -30,6 +30,16 @@ h1{
     text-align:center;
 }
 
+#payNowBtn{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 </style>
 
 </head>
@@ -100,6 +110,42 @@ Pay ₹699 & Submit Order
 </button>
 </form>
 
+<div id="successSection"
+     style="display:none;
+            margin-top:20px;
+            padding:20px;
+            border:1px solid green;
+            background-color:#f0fff0;
+            border-radius:8px;">
+
+    <h2>✅ Order Created Successfully</h2>
+
+    <p>
+        <strong>Order Number:</strong>
+        <span id="displayOrderNumber"></span>
+    </p>
+
+    <p>
+        <strong>Customer:</strong>
+        <span id="displayCustomer"></span>
+    </p>
+
+    <p>
+        <strong>Amount Payable:</strong>
+        ₹699
+    </p>
+
+    <p>
+        <strong>Delivery Time:</strong>
+        Within 30 Minutes
+    </p>
+
+    <button id="payNowBtn">
+        Pay ₹699
+    </button>
+
+</div>
+
 <script>
 
 document.getElementById("orderForm").addEventListener("submit", async function(e){
@@ -143,14 +189,25 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
     const result = await response.json();
 
-    alert(
-     "Order Created Successfully\n\n" +
-     "Order Number : " + result.order_number +
-     "\nCustomer : " + result.customer +
-     "\nAmount Payable : ₹699" +
-     "\nDelivery Time : Within 30 Minutes"
-    );
+    document.getElementById(
+     "successSection"
+     ).style.display = "block";
 
+    document.getElementById(
+     "displayOrderNumber"
+     ).innerText =
+     result.order_number;
+
+    document.getElementById(
+     "displayCustomer"
+     ).innerText =
+     result.customer;
+
+/* Hide the form after successful submission */
+
+    document.getElementById(
+        "orderForm"
+    ).style.display = "none";
   
 });
 
